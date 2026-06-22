@@ -6,10 +6,24 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
+const handleLogin = () => {
+  if (!email) {
+    alert("Please enter email");
+    return;
+  }
+
+  if (!password) {
+    alert("Please enter password");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters");
+    return;
+  }
+
+  alert("Login Successful");
+};
 
   return (
     <div className="login-container">
