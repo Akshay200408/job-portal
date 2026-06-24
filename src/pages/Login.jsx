@@ -1,30 +1,33 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+const navigate = useNavigate();
 
 const handleLogin = () => {
-  if (!email) {
-    alert("Please enter email");
+
+  const storedUser =
+    JSON.parse(localStorage.getItem("user"));
+
+  if (!storedUser) {
+    alert("No user found. Please register.");
     return;
   }
 
-  if (!password) {
-    alert("Please enter password");
-    return;
+  if (
+    email === storedUser.email &&
+    password === storedUser.password
+  ) {
+    alert("Login Successful");
+    navigate("/dashboard");
+  } else {
+    alert("Invalid Credentials");
   }
-
-  if (password.length < 6) {
-    alert("Password must be at least 6 characters");
-    return;
-  }
-
-  alert("Login Successful");
 };
-
   return (
     <div className="login-container">
       <div className="login-card">

@@ -8,27 +8,38 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister= () => {
-    if (!name) {
-        alert("Please enter name");
-        return;
-    }
-    if (!email) {
+const handleRegister = () => {
+  if (!name) {
+    alert("Please enter name");
+    return;
+  }
+
+  if (!email) {
     alert("Please enter email");
     return;
-    }
+  }
 
   if (!password) {
     alert("Please enter password");
     return;
-    } 
+  }
 
   if (password.length < 6) {
     alert("Password must be at least 6 characters");
     return;
   }
 
-  alert("Register Successful");
+  const user = {
+    name,
+    email,
+    password,
+  };
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  alert("Registration Successful");
+
+  console.log(localStorage.getItem("user"));
 };
 
 
